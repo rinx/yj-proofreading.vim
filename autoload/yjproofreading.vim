@@ -1,7 +1,7 @@
 let g:yj_proofreading#yahoo_apikey = get(g:, 'yj_proofreading#yahoo_apikey', '')
 
 " Use Yahoo! Japan Proof-Read API
-function! yj_proofreading#call_yahoo_proofreader_api(apikey, line)
+function! yjproofreading#call_yahoo_proofreader_api(apikey, line)
     let res = webapi#http#get('https://jlp.yahooapis.jp/KouseiService/V1/kousei', {
                 \ "appid": a:apikey,
                 \ "sentence" : a:line,
@@ -23,10 +23,10 @@ function! yj_proofreading#call_yahoo_proofreader_api(apikey, line)
     return arr
 endfunction
 
-function! yj_proofreading#yahoo_proofreader()
+function! yjproofreading#yahoo_proofreader()
     let line = getline('.')
 
-    let res = yj_proofreading#call_yahoo_proofreader_api(g:yj_proofreading#yahoo_apikey, line)
+    let res = yjproofreading#call_yahoo_proofreader_api(g:yj_proofreading#yahoo_apikey, line)
     let formatted_res = res
     call map(formatted_res,
                 \ "'(1,' . v:val.startpos . '): ' . v:val.surface . ' -> ' . v:val.word . ' : ' . v:val.info")
