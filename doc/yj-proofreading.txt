@@ -1,0 +1,30 @@
+*yj-proofreading.txt*	A Japanese proofreading plugin.
+
+Version: 0.0.1
+Author: Rintaro Okamura <rintaro.okamura@gmail.com>
+License: MIT License
+
+CONTENTS				*yj-proofreading-contents*
+
+	Install				|yj-proofreading-install|
+	Usage				|yj-proofreading-usage|
+	Configure			|yj-proofreading-configure|
+	Functions			|yj-proofreading-functions|
+
+==============================================================================
+INSTALL					*yj-proofreading-install*
+
+
+==============================================================================
+USAGE					*yj-proofreading-usage*
+
+
+==============================================================================
+CONFIGURE				*yj-proofreading-configure*
+
+
+==============================================================================
+FUNCTIONS				*yj-proofreading-functions*
+
+
+
