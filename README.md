@@ -4,7 +4,7 @@ yj-proofreading.vim
 A Japanese proofreading plugin for Vim.  
 This plugin uses [Yahoo! Japan proofreading WebAPI](http://developer.yahoo.co.jp/webapi/jlp/kousei/v1/kousei.html).
 
-![screenshot](https://gist.githubusercontent.com/rinx/a0bf405492e1db3506d092c2c4fa230b/raw/f689a8873363a64f6727d9915c3a525ae58eadae/screenshot2.png)
+![screenshot](https://gist.githubusercontent.com/rinx/a0bf405492e1db3506d092c2c4fa230b/raw/a366456c923c6c58394018f8c1f640ff11f73642/screenshot1.png)
 
 Dependencies
 ---
@@ -45,11 +45,14 @@ endif
 ```
 
 `:YahooProofReader` command calls Yahoo! Japan WebAPI for the current line.  
-It can be receive the range like `:9,13YahooProofReader` which means calling API for from the line number 9 to 13.
+It can be receive the range like `:9,13YahooProofReader` which means calling API for the range from the line number 9 to 13.
 
 
 Functions
 ---
+
+* `yjproofreading#call_yahoo_proofreader_api(apikey, line)` : it calls Yahoo! Japan proofreading API.
+* `yjproofreading#yahoo_proofreader()` : it receives a range and calls API for the lines
 
 
 License

@@ -32,10 +32,10 @@ function! yjproofreading#yahoo_proofreader() range
     let formatted_res = res
 
     if !empty(expand('%'))
-        let prefix_mapfunc = expand('%')
+        let prefix_filename = expand('%')
         let prefix_erf = '%f'
     else
-        let prefix_mapfunc = ''
+        let prefix_filename = ''
         let prefix_erf = ''
     endif
     let tmp_errorformat = &errorformat
@@ -55,7 +55,7 @@ function! yjproofreading#yahoo_proofreader() range
             else
                 let msg = v.surface . ' : ' . v.info
             end
-            call add(arr, prefix_mapfunc . '(' . ln . ',' . sp . '): ' . msg)
+            call add(arr, prefix_filename . '(' . ln . ',' . sp . '): ' . msg)
         endfor
         let &errorformat = prefix_erf . '(%l\,%c):%m'
         cexpr join(arr, "\n")
