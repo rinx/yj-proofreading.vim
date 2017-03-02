@@ -4,7 +4,7 @@ yj-proofreading.vim
 A Japanese proofreading plugin for Vim.  
 This plugin uses [Yahoo! Japan proofreading WebAPI](http://developer.yahoo.co.jp/webapi/jlp/kousei/v1/kousei.html).
 
-![screenshot](https://gist.githubusercontent.com/rinx/a0bf405492e1db3506d092c2c4fa230b/raw/a366456c923c6c58394018f8c1f640ff11f73642/screenshot1.png)
+![screenshot](https://gist.githubusercontent.com/rinx/a0bf405492e1db3506d092c2c4fa230b/raw/ab71825a080bbee8b81f82f2fd7f51d7e38c4cd7/screenshot1.png)
 
 Dependencies
 ---

@@ -28,7 +28,7 @@ function! yjproofreading#yahoo_proofreader() range
     let lines = getline(a:firstline, a:lastline)
     let strcounts = map(copy(lines), 's:len_multibyte(v:val)')
 
-    let res = yjproofreading#call_yahoo_proofreader_api(g:yj_proofreading#yahoo_apikey, join(lines, "\n"))
+    let res = yjproofreading#call_yahoo_proofreader_api(g:yj_proofreading#yahoo_apikey, join(lines, ""))
     let formatted_res = res
 
     if !empty(expand('%'))
