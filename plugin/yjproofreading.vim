@@ -11,7 +11,7 @@ let g:loaded_yj_proofreading = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-command! YahooProofReaderCurrentLine call yjproofreading#yahoo_proofreader()
+command! -range YahooProofReader <line1>,<line2>call yjproofreading#yahoo_proofreader()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
