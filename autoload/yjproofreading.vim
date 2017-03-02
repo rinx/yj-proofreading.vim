@@ -26,7 +26,7 @@ endfunction
 
 function! yjproofreading#yahoo_proofreader() range
     let lines = getline(a:firstline, a:lastline)
-    let strcounts = map(copy(lines), 'len(v:val)')
+    let strcounts = map(copy(lines), 's:len_multibyte(v:val)')
 
     let res = yjproofreading#call_yahoo_proofreader_api(g:yj_proofreading#yahoo_apikey, join(lines, "\n"))
     let formatted_res = res
@@ -63,4 +63,7 @@ function! yjproofreading#yahoo_proofreader() range
     endtry
 endfunction
 
+function! s:len_multibyte(s)
+    return len(substitute(a:s, '.', 'x', 'g'))
+endfunction
 
