@@ -44,10 +44,10 @@ function! yjproofreading#yahoo_proofreader() range
         let nowline = 0
         let coldiff = 0
         for v in formatted_res
-            if v.startpos - coldiff > strcounts[nowline]
+            while v.startpos > strcounts[nowline] + coldiff
                 let coldiff = coldiff + strcounts[nowline]
                 let nowline = nowline + 1
-            endif
+            endwhile
             let ln = printf("%d", v.line + nowline + a:firstline - 1)
             let sp = printf("%d", v.startpos - coldiff)
             call add(arr, prefix_mapfunc . '(' . ln . ',' . sp . '): ' . v.surface . ' -> ' . v.word . ' : ' . v.info)
@@ -63,7 +63,7 @@ function! yjproofreading#yahoo_proofreader() range
     endtry
 endfunction
 
-function! s:len_multibyte(s)
-    return len(substitute(a:s, '.', 'x', 'g'))
+function! s:len_multibyte(str)
+    return len(substitute(a:str, '.', 'x', 'g'))
 endfunction
 
