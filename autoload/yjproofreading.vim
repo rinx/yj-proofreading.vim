@@ -50,7 +50,12 @@ function! yjproofreading#yahoo_proofreader() range
             endwhile
             let ln = printf("%d", v.line + nowline + a:firstline - 1)
             let sp = printf("%d", v.startpos - coldiff)
-            call add(arr, prefix_mapfunc . '(' . ln . ',' . sp . '): ' . v.surface . ' -> ' . v.word . ' : ' . v.info)
+            if !empty(v.word)
+                let msg = v.surface . ' -> ' . v.word . ' : ' . v.info
+            else
+                let msg = v.surface . ' : ' . v.info
+            end
+            call add(arr, prefix_mapfunc . '(' . ln . ',' . sp . '): ' . msg)
         endfor
         let &errorformat = prefix_erf . '(%l\,%c):%m'
         cexpr join(arr, "\n")
