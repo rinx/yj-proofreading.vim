@@ -14,17 +14,59 @@ CONTENTS				*yj-proofreading-contents*
 ==============================================================================
 INSTALL					*yj-proofreading-install*
 
+This is a Japanese proofreading plugin for Vim.
+This plugin uses Yahoo! Japan proofreading WebAPI
+(http://developer.yahoo.co.jp/webapi/jlp/kousei/v1/kousei.html).
+
+This plugin requires `mattn/webapi-vim` (https://github.com/mattn/webapi-vim).
+Also, it requires Yahoo! Japan WebAPI key.
+You can get it from https://e.developer.yahoo.co.jp/register.
+After you get the API-key, you should save it in your `.vimrc` like:
+>
+	let g:yj_proofreading#yahoo_apikey = 'your apikey'
+<
+If your `.vimrc` is public, it is better to use `.vimrc_private` or something.
+`~/.vimrc_private` should be created like:
+>
+	let g:vimrc_private = {
+		\ 'yahoo_proofreader_apikey': 'your apikey',
+		\ }
+<
+and then, you should write the following codes in your `.vimrc`.
+>
+	let g:vimrc_private = {}
+	if filereadable(expand('~/.vimrc_private'))
+	    execute 'source' expand('~/.vimrc_private')
+	endif
+<
+
 
 ==============================================================================
 USAGE					*yj-proofreading-usage*
+
+`:YahooProofReader` command calls Yahoo! Japan WebAPI for the current line.
+It can be receive the range like `:9,13YahooProofReader` which means
+calling API for the range from the line number 9 to 13.
 
 
 ==============================================================================
 CONFIGURE				*yj-proofreading-configure*
 
+*g:yj_proofreading#yahoo_apikey*
+
+	This is a variable which have Yahoo! Japan WebAPI key.
+
 
 ==============================================================================
 FUNCTIONS				*yj-proofreading-functions*
+
+*yjproofreading#call_yahoo_proofreader_api*
+
+	It calls Yahoo! Japan proofreading API.
+
+*yjproofreading#yahoo_proofreader*
+
+	It receives a range and calls API for the lines.
 
 
 
