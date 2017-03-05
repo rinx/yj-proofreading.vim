@@ -22,7 +22,7 @@ The application type is client-side one.
 After you get the API-key, you should save it in your `.vimrc` like:
 
 ```vim
-    let g:yj_proofreading#yahoo_apikey = 'your apikey'
+let g:yj_proofreading#yahoo_apikey = 'your apikey'
 ```
 
 If your `.vimrc` is public, it is better to use `.vimrc_private` or something.  
