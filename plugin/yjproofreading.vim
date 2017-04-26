@@ -1,5 +1,5 @@
 " yj-proofreading.vim
-" Version: 0.0.1
+" Version: 0.0.2
 " Author: Rintaro Okamura
 " License: MIT
 

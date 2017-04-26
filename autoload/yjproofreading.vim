@@ -1,12 +1,17 @@
+" Load vital modules
+let s:V = vital#of('yjproofreading')
+let s:HTTP = s:V.import('Web.HTTP')
+let s:XML = s:V.import('Web.XML')
+
 let g:yj_proofreading#yahoo_apikey = get(g:, 'yj_proofreading#yahoo_apikey', '')
 
 " Use Yahoo! Japan Proof-Read API
 function! yjproofreading#call_yahoo_proofreader_api(apikey, line)
-    let res = webapi#http#get('https://jlp.yahooapis.jp/KouseiService/V1/kousei', {
+    let res = s:HTTP.get('https://jlp.yahooapis.jp/KouseiService/V1/kousei', {
                 \ "appid": a:apikey,
                 \ "sentence" : a:line,
                 \})
-    let res_body = webapi#xml#parse(res.content)
+    let res_body = s:XML.parse(res.content)
     let results = res_body.childNodes("Result")
 
     let arr = []

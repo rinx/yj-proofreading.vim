@@ -1,6 +1,6 @@
 *yj-proofreading.txt*	A Japanese proofreading plugin.
 
-Version: 0.0.1
+Version: 0.0.2
 Author: Rintaro Okamura <rintaro.okamura@gmail.com>
 License: MIT License
 
@@ -10,6 +10,7 @@ CONTENTS				*yj-proofreading-contents*
 	Usage				|yj-proofreading-usage|
 	Configure			|yj-proofreading-configure|
 	Functions			|yj-proofreading-functions|
+	Acknowledgement			|yj-proofreading-acknowledgement|
 
 ==============================================================================
 INSTALL					*yj-proofreading-install*
@@ -18,8 +19,7 @@ This is a Japanese proofreading plugin for Vim.
 This plugin uses Yahoo! Japan proofreading WebAPI
 (http://developer.yahoo.co.jp/webapi/jlp/kousei/v1/kousei.html).
 
-This plugin requires `mattn/webapi-vim` (https://github.com/mattn/webapi-vim).
-Also, it requires Yahoo! Japan WebAPI key.
+This plugin requires Yahoo! Japan WebAPI key.
 You can get it from https://e.developer.yahoo.co.jp/register.
 After you get the API-key, you should save it in your `.vimrc` like:
 >
@@ -68,5 +68,10 @@ FUNCTIONS				*yj-proofreading-functions*
 
 	It receives a range and calls API for the lines.
 
+
+==============================================================================
+ACKNOWLEDGEMENT				*yj-proofreading-acknowledgement*
+
+This plugin uses vital.vim (https://github.com/vim-jp/vital.vim).
 
 

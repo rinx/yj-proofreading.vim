@@ -6,11 +6,6 @@ This plugin uses [Yahoo! Japan proofreading WebAPI](http://developer.yahoo.co.jp
 
 ![screenshot](https://gist.githubusercontent.com/rinx/a0bf405492e1db3506d092c2c4fa230b/raw/ab71825a080bbee8b81f82f2fd7f51d7e38c4cd7/screenshot1.png)
 
-Dependencies
----
-
-* [mattn/webapi-vim](https://github.com/mattn/webapi-vim)
-
 
 Usage
 ---
@@ -60,4 +55,9 @@ License
 
 MIT License.
 
+
+Acknowledgement
+---
+
+This plugin uses [vital.vim](https://github.com/vim-jp/vital.vim).
 
