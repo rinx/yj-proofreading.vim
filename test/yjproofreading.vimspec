@@ -1,0 +1,131 @@
+Describe yj-proofreading
+
+  Before
+    let apikey = g:yahoo_apikey
+  End
+
+  It no-apikey case
+    let res = yjproofreading#call_yahoo_proofreader_api("", "")
+    Assert Equals(res, [])
+  End
+
+  It apikey case
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, "")
+    Assert Equals(res, [])
+  End
+
+  " https://developer.yahoo.co.jp/webapi/jlp/kousei/v1/kousei.html
+
+  It 誤変換
+    let inp = "人事異同"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '人事異動', 'surface': '人事異同', 'length': 4, 'startpos': 1, 'line': 1, 'info': '誤変換'}]
+    Assert Equals(res, expect)
+  End
+
+  It 誤用
+    let inp = "煙に巻く"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'けむに巻く', 'surface': '煙に巻く', 'length': 4, 'startpos': 1, 'line': 1, 'info': '誤用'}]
+    Assert Equals(res, expect)
+  End
+
+  It 使用注意
+    let inp = "外人墓地"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '外国人墓地', 'surface': '外人墓地', 'length': 4, 'startpos': 1, 'line': 1, 'info': '使用注意'}]
+    Assert Equals(res, expect)
+  End
+
+  It 不快語
+    let inp = "がんをつける"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'にらむ', 'surface': 'がんをつける', 'length': 6, 'startpos': 1, 'line': 1, 'info': '不快語'}]
+    Assert Equals(res, expect)
+  End
+
+  It 外国地名
+    let inp = "モルジブ"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'モルディブ', 'surface': 'モルジブ', 'length': 4, 'startpos': 1, 'line': 1, 'info': '外国地名'}]
+    Assert Equals(res, expect)
+  End
+
+  It 固有名詞
+    let inp = "ヤフーブログ"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'Yahoo!ブログ', 'surface': 'ヤフーブログ', 'length': 6, 'startpos': 1, 'line': 1, 'info': '固有名詞'}]
+    Assert Equals(res, expect)
+  End
+
+  It 人名
+    let inp = "ベートーヴェン"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'ベートーベン', 'surface': 'ベートーヴェン', 'length': 7, 'startpos': 1, 'line': 1, 'info': '人名'}]
+    Assert Equals(res, expect)
+  End
+
+  It ら抜き
+    let inp = "食べれる"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '食べられる', 'surface': '食べれる', 'length': 4, 'startpos': 1, 'line': 1, 'info': 'ら抜き'}]
+    Assert Equals(res, expect)
+  End
+
+  It 当て字
+    let inp = "出鱈目"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '', 'surface': '出鱈目', 'length': 3, 'startpos': 1, 'line': 1, 'info': '当て字'}]
+    Assert Equals(res, expect)
+  End
+
+  It 表外漢字あり
+    let inp = "灯籠"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'あかり', 'surface': '灯', 'length': 1, 'startpos': 1, 'line': 1, 'info': '用字'}, {'word': 'こも（訓読みの場合はひらがな書き）', 'surface': '籠', 'length': 1, 'startpos': 2, 'line': 1, 'info': '用字'}]
+    Assert Equals(res, expect)
+  End
+
+  It 用字
+    let inp = "曖昧"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = []
+    Assert Equals(res, expect)
+  End
+
+  It 用語言い換え（商標など）
+    let inp = "セロテープ"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': 'セロハンテープ', 'surface': 'セロテープ', 'length': 5, 'startpos': 1, 'line': 1, 'info': '用語言い換え'}]
+    Assert Equals(res, expect)
+  End
+
+  It 二重否定
+    let inp = "聞かなくはない"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '', 'surface': '聞かなくはない', 'length': 7, 'startpos': 1, 'line': 1, 'info': '二重否定'}]
+    Assert Equals(res, expect)
+  End
+
+  It 助詞不足の可能性あり
+    let inp = "学校行く"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '', 'surface': '学校行く', 'length': 4, 'startpos': 1, 'line': 1, 'info': '助詞不足の可能性あり'}]
+    Assert Equals(res, expect)
+  End
+
+  It 冗長表現
+    let inp = "ことができます"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = []
+    Assert Equals(res, expect)
+  End
+
+  It 略語
+    let inp = "ADSL"
+    let res = yjproofreading#call_yahoo_proofreader_api(apikey, inp)
+    let expect = [{'word': '非対称デジタル加入者線(ADSL)', 'surface': 'ADSL', 'length': 4, 'startpos': 1, 'line': 1, 'info':'略語'}]
+    Assert Equals(res, expect)
+  End
+
+End

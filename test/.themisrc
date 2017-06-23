@@ -1,0 +1,20 @@
+call themis#helper('command').with(themis#helper('assert'))
+
+let g:root = fnamemodify(expand('<sfile>'), ':h:h')
+call themis#option('runtimepath', g:root)
+
+" for development
+let s:vimrc_private_filename = '~/.vimrc_private'
+if filereadable(expand(s:vimrc_private_filename))
+    execute 'source' expand(s:vimrc_private_filename)
+else
+    call system('touch ' . expand(s:vimrc_private_filename))
+endif
+unlet s:vimrc_private_filename
+
+if exists('g:vimrc_private["yahoo_proofreader_apikey"]')
+    let g:yahoo_apikey = g:vimrc_private['yahoo_proofreader_apikey']
+else
+    let g:yahoo_apikey = $YAHOO_APIKEY
+endif
+
