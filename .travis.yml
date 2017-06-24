@@ -8,7 +8,8 @@ install:
     git checkout $(git describe --tags --abbrev=0) &&
     ./configure --prefix=$HOME/vim-git &&
     make &&
-    make install
+    make install &&
+    cd $TRAVIS_BUILD_DIR
   - export THEMIS_VIM=$HOME/vim-git/bin/vim
 
 before_script:
