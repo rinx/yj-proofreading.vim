@@ -1,4 +1,6 @@
-yj-proofreading.vim [![Powered by vital.vim](https://img.shields.io/badge/powered%20by-vital.vim-80273f.svg)](https://github.com/vim-jp/vital.vim)
+yj-proofreading.vim
+[![Build Status](https://travis-ci.org/rinx/yj-proofreading.vim.svg?branch=master)](https://travis-ci.org/rinx/yj-proofreading.vim)
+[![Powered by vital.vim](https://img.shields.io/badge/powered%20by-vital.vim-80273f.svg)](https://github.com/vim-jp/vital.vim)
 ===
 
 A Japanese proofreading plugin for Vim.  
