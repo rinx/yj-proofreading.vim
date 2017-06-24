@@ -7,5 +7,5 @@ before_script:
   - vim --version
 
 script:
-  - /tmp/vim-themis --reporter spec
+  - /tmp/vim-themis/bin/themis --reporter spec
 
