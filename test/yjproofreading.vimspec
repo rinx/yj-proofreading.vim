@@ -128,4 +128,22 @@ Describe yj-proofreading
     Assert Equals(res, expect)
   End
 
+  It 単バイト文字数カウント
+    let str = 'hello world'
+    let res = yjproofreading#len_multibyte(str)
+    Assert Equals(res, 11)
+  End
+
+  It マルチバイト文字数カウント
+    let str = 'こんにちは世界'
+    let res = yjproofreading#len_multibyte(str)
+    Assert Equals(res, 7)
+  End
+
+  It マルチバイト混在文字数カウント
+    let str = 'hello 世界'
+    let res = yjproofreading#len_multibyte(str)
+    Assert Equals(res, 8)
+  End
+
 End
